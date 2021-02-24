@@ -31,3 +31,12 @@ Route::delete('personD/{id}','App\Http\Controllers\PersonController@destroy');
 Route::delete('deliveryD/{id}','App\Http\Controllers\DeliveryController@destroy');
 
 Route::put('blogs/{id}','App\Http\Controllers\BlogController@update');
+Route::group(['middleware' => ['cors']], function () {
+    Route::apiResource('person',PersonController::class);
+    Route::apiResource('blog',BlogController::class);
+    Route::apiResource('delivery',DeliveryController::class);
+
+    Route::delete('blogD/{id}','App\Http\Controllers\BlogController@destroy');
+    Route::delete('personD/{id}','App\Http\Controllers\PersonController@destroy');
+    Route::delete('deliveryD/{id}','App\Http\Controllers\DeliveryController@destroy');
+});

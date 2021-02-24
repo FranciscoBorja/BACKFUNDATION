@@ -40,13 +40,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'title'=> 'required',
-            'description'=> 'required',
-            'image'=> 'required',
-            'link'=> 'required',
-        ]);
-
+       
         $blog = new blog;
         $blog->title = $request->input('title');
         $blog->description = $request->input('description');
@@ -97,12 +91,7 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'title'=> 'required',
-            'description'=> 'required',
-            'image'=> 'required',
-            'link'=> 'required',
-        ]);
+       
         $blog = blog::find($id);
 
         $blog->title = $request->input('title');
