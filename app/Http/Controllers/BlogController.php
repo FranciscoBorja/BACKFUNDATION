@@ -16,10 +16,9 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return response()->json([
-            'error' => false,
-            'blog'  => blog::all(),
-        ], 200);
+        return response()->json(
+            blog::all()
+        );
         }
 
     /**
@@ -49,10 +48,9 @@ class BlogController extends Controller
       
 
         $blog->save();
-        return response()->json([
-                'error'=> false,
-                'blog' => $blog
-        ], 201);
+        return response()->json(
+             $blog
+        );
     }
 
     /**
@@ -64,11 +62,9 @@ class BlogController extends Controller
     public function show($id)
     {
         $blog = blog::findOrFail($id);
-        return response()->json([
-            'data' =>[
-                'blog' => $blog
-            ]
-        ]);
+        return response()->json(
+             $blog
+        );
     }
 
     /**
@@ -99,10 +95,9 @@ class BlogController extends Controller
         $blog->image = $request->input('image');
         $blog->link = $request->input('link');
         $blog->save();
-        return response()->json([
-                'error'=> false,
-                'blog' => $blog
-        ], 201);
+        return response()->json(
+             $blog
+        );
 
         
     }

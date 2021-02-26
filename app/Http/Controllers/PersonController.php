@@ -14,10 +14,8 @@ class PersonController extends Controller
      */
     public function index()
     {
-        return response()->json([
-            'error' => false,
-            'person'  => person::all(),
-        ], 200);
+        return response()->json( person::all()
+       );
     }
 
     /**
@@ -38,19 +36,7 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'surname'=> 'required',
-            'dateBirth'=> 'required',
-            'age'=> 'required',
-            'CI' => 'required',
-            'mothersName' => 'required',
-            'fathersName' => 'required',
-            'study' => 'required',
-            'houseAddress' => 'required',
-            'schoolName' => 'required',
-            'image' => 'required',
-        ]);
+        
 
         $person = new person;
         $person->name = $request->input('name');
@@ -66,11 +52,9 @@ class PersonController extends Controller
         $person->image = $request->input('image');
 
         $person->save();
-        return response()->json([
-            'data' => [
-                'person' => $person
-            ]
-        ], 201);
+        return response()->json(
+                $person
+       );
 
 
     }
@@ -84,11 +68,9 @@ class PersonController extends Controller
     public function show(person $person)
     {
         $person = person::findOrFail($id);
-        return response()->json([
-            'data' =>[
-                'person' => $person
-            ]
-        ]);
+        return response()->json(
+              $person
+       );
     }
 
     /**
@@ -111,19 +93,6 @@ class PersonController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required',
-            'surname'=> 'required',
-            'dateBirth'=> 'required',
-            'age'=> 'required',
-            'CI' => 'required',
-            'mothersName' => 'required',
-            'fathersName' => 'required',
-            'study' => 'required',
-            'houseAddress' => 'required',
-            'schoolName' => 'required',
-            'image' => 'required',
-        ]);
 
         $person = person::findOrFail($id);
         $person->name = $request->input('name');
@@ -139,11 +108,9 @@ class PersonController extends Controller
         $person->image = $request->input('image');
 
         $person->save();
-        return response()->json([
-            'data' => [
-                'person' => $person
-            ]
-        ], 201);
+        return response()->json(
+               $person
+        );
         
     }
 

@@ -14,10 +14,8 @@ class DeliveryController extends Controller
      */
     public function index()
     {
-        return response()->json([
-            'error' => false,
-            'delivery'  => delivery::all(),
-        ], 200);
+        return response()->json( delivery::all()
+      );
     }
 
     /**
@@ -38,12 +36,7 @@ class DeliveryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'deliveryDate'=> 'required',
-            'description'=> 'required',
-            'novelties'=> 'required',
-        ]);
+        
 
         $delivery = new delivery;
         $delivery->name = $request->input('name');
@@ -53,11 +46,8 @@ class DeliveryController extends Controller
       
 
         $delivery->save();
-        return response()->json([
-            'data' => [
-                'delivery' => $delivery
-            ]     
-        ], 201);
+        return response()->json( $delivery    
+        );
     }
 
     /**
@@ -69,11 +59,10 @@ class DeliveryController extends Controller
     public function show($id)
     {
         $delivery = delivery::findOrFail($id);
-        return response()->json([
-            'data' =>[
-                'delivery' => $delivery
-            ]
-        ]);
+        return response()->json(
+             $delivery
+            
+        );
     }
 
     /**
@@ -96,12 +85,7 @@ class DeliveryController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $request->validate([
-            'name' => 'required',
-            'deliveryDate'=> 'required',
-            'description'=> 'required',
-            'novelties'=> 'required',
-        ]);
+      
         $delivery = delivery::findOrFail($id);
         $delivery->name = $request->input('name');
         $delivery->deliveryDate = $request->input('deliveryDate');
@@ -110,11 +94,9 @@ class DeliveryController extends Controller
       
 
         $delivery->save();
-        return response()->json([
-            'data' => [
-                'delivery' => $delivery
-            ]     
-        ], 201);
+        return response()->json(
+                $delivery    
+       );
     }
 
     /**
